@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.IO;
+using System.Xml.Serialization;
 
 
 namespace Lab2PhoneBook
@@ -9,8 +10,19 @@ namespace Lab2PhoneBook
     {
         static void Main(string[] args)
         {
+            XmlSerializer formatter = new XmlSerializer(typeof(PhoneBook[]));
+            PhoneBook[] phoneBase;
+            try
+            {
+                phoneBase = readFromFile("input.txt");
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("Не найден исходный файл:");
+                Console.WriteLine(e.FileName);
+                return;
+            }
 
-            PhoneBook[] phoneBase = readFromFile("input.txt");
             Console.WriteLine("Телефонный справочник: \n");
             foreach (PhoneBook record in phoneBase)
             {
@@ -23,6 +35,12 @@ namespace Lab2PhoneBook
             {
                 record.Search(searching);
             }
+
+            using (FileStream fs = new FileStream("base.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, phoneBase);
+            }
+
             Console.ReadKey();
         }
 

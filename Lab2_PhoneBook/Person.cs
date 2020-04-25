@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Lab2PhoneBook
 {
+    [Serializable]
     /// <summary>
     /// Персона, характеризуется именем, адресом и номером телефона
     /// </summary>
     public class Person : PhoneBook
     {
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public Person() { }
         /// <summary>
         /// Конструктор класса
         /// </summary>
@@ -15,6 +21,7 @@ namespace Lab2PhoneBook
         /// <param name="phone">Телефон</param>
         public Person(string name, string address, string phone)
         {
+            Trace.WriteLine("Person.Person");
             this.name = name;
             this.address = address;
             this.phone = phone;
@@ -24,6 +31,7 @@ namespace Lab2PhoneBook
         /// </summary>
         public override void printInfo()
         {
+            Trace.WriteLine("Person.PrintInfo");
             Console.WriteLine($"Имя: {name}\nАдрес: {address}\nТелефон: {phone}\n");
         }
     }

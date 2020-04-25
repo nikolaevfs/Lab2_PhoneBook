@@ -3,11 +3,16 @@ using System.Diagnostics;
 
 namespace Lab2PhoneBook
 {
+    [Serializable]
     /// <summary>
     /// Друг
     /// </summary>
     public class Friend : PhoneBook
     {
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public Friend() { }
         /// <summary>
         /// Дата рождения
         /// </summary>
@@ -22,6 +27,7 @@ namespace Lab2PhoneBook
         /// <param name="birthDate">Дата рождения</param>
         public Friend(string name, string address, string phone, string birthDate)
         {
+            Trace.WriteLine("Friend.Friend");
             this.name = name;
             this.address = address;
             this.phone = phone;
@@ -30,7 +36,7 @@ namespace Lab2PhoneBook
 
         public override void printInfo()
         {
-            Trace.WriteLine("Organization.PrintInfo");
+            Trace.WriteLine("Friend.PrintInfo");
             Console.WriteLine($"Имя: {name}\nАдрес: {address}\nТелефон: {phone}\nДата рождения: {birthDate}\n");
         }
     }

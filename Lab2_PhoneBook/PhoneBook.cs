@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace Lab2PhoneBook
 {
+    [XmlInclude(typeof(Person)), XmlInclude(typeof(Friend)), XmlInclude(typeof(Organization))]
+    [Serializable]
     /// <summary>
     /// абстрактный класс, обозначающий запись в телефонном справочнике
     /// </summary>
@@ -21,6 +25,10 @@ namespace Lab2PhoneBook
         public string phone;
 
         /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public PhoneBook() { }
+        /// <summary>
         /// Метод, выводящий на экран информацию о записи
         /// </summary>
         public abstract void printInfo();
@@ -32,6 +40,7 @@ namespace Lab2PhoneBook
         /// </param>
         public void Search(string searching)
         {
+            Trace.WriteLine("PhoneBook.Search");
             if (name.Contains(searching)) printInfo();
         }
     }

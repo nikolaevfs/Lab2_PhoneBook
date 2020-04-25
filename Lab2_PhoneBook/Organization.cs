@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Lab2PhoneBook
 {
+    [Serializable]
     /// <summary>
     /// Организация
     /// </summary>
     public class Organization : PhoneBook
     {
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
+        public Organization() { }
         /// <summary>
         /// Факс
         /// </summary>
@@ -26,6 +32,7 @@ namespace Lab2PhoneBook
         /// <param name="contact">Контактное лицо</param>
         public Organization(string name, string address, string phone, string fax, string contact)
         {
+            Trace.WriteLine("Organization.Organization");
             this.name = name;
             this.address = address;
             this.phone = phone;
@@ -35,6 +42,7 @@ namespace Lab2PhoneBook
 
         public override void printInfo()
         {
+            Trace.WriteLine("Organization.PrintInfo");
             Console.WriteLine($"Название: {name}\nАдрес: {address}\nТелефон: {phone}\nФакс: {fax}\nКонтактное лицо: {contact}\n");
         }
     }
